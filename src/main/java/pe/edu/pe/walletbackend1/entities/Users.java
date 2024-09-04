@@ -3,11 +3,11 @@ package pe.edu.pe.walletbackend1.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="Users")
+@Table(name = "Users")
 public class Users {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userid;
 
     @Column(name = "firstname", length = 50, nullable = false)
@@ -25,10 +25,9 @@ public class Users {
     @Column(name = "image")
     private byte[] image;
 
-    //Constructor vacio
     public Users() {
     }
-    //Constructor con atributos
+
     public Users(int userid, String firstname, String lastname, String email, String password, byte[] image) {
         this.userid = userid;
         this.firstname = firstname;
@@ -37,7 +36,7 @@ public class Users {
         this.password = password;
         this.image = image;
     }
-    //Setters & getters
+
     public int getUserid() {
         return userid;
     }
