@@ -14,8 +14,6 @@ public class UsersDTO {
 
     private byte[] image;
 
-    //Setters and getters
-
     public int getUserid() {
         return userid;
     }
