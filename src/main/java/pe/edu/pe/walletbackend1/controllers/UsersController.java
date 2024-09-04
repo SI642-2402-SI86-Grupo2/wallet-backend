@@ -15,11 +15,11 @@ import java.util.stream.Collectors;
 public class UsersController {
 
     @Autowired
-    private IUsersService usersService;
+    private IUsersService uSv;
 
     @GetMapping
     public List<UsersDTO> listar() {
-        return usersService.list().stream().map(x->{
+        return uSv.list().stream().map(x->{
             ModelMapper m=new ModelMapper();
             return m.map(x,UsersDTO.class);
         }).collect(Collectors.toList());
@@ -29,19 +29,19 @@ public class UsersController {
     public void registrar (@RequestBody UsersDTO dto) {
         ModelMapper m = new ModelMapper();
         Users usrs = m.map(dto, Users.class); //transforma el dto
-        usersService.insert(usrs);
+        uSv.insert(usrs);
     };
 
     @PutMapping
     public void modificar (@RequestBody UsersDTO dto) {
         ModelMapper m = new ModelMapper();
         Users  usrs = m.map(dto, Users.class); //transformamos el dto
-        usersService.update(usrs);
+        uSv.update(usrs);
     };
 
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable("id") Integer id){
-        usersService.delete(id);
+        uSv.delete(id);
     }
 
 
