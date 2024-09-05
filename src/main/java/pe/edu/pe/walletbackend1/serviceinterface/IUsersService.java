@@ -6,12 +6,15 @@ import java.util.List;
 
 public interface IUsersService {
 
-    public List<Users> list();
+    List<Users> list();
 
-    public void insert (Users users);
+    void insert(Users users);
 
-    public void update (Users users);
+    void update(Users users);
 
-    public void delete (int id_users);
+    void delete(int id_users);
 
+    Users listId(int id);
+
+    boolean emailExists(String email);
 }

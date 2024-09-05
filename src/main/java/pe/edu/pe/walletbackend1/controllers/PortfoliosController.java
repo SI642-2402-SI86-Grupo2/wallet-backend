@@ -4,41 +4,58 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.pe.walletbackend1.dtos.PortfoliosDTO;
-import pe.edu.pe.walletbackend1.dtos.UsersDTO;
 import pe.edu.pe.walletbackend1.entities.Portfolios;
 import pe.edu.pe.walletbackend1.entities.Users;
 import pe.edu.pe.walletbackend1.serviceinterface.IPortfoliosService;
+import pe.edu.pe.walletbackend1.serviceinterface.IUsersService;
 
 @RestController
-@RequestMapping("/controllers")
+@RequestMapping("/portfolios")
 public class PortfoliosController {
 
     @Autowired
     private IPortfoliosService portfoliosService;
 
+    @Autowired
+    private IUsersService usersService;
+
     @GetMapping("/{id}")
     public PortfoliosDTO listarID(@PathVariable("id") Integer id) {
         ModelMapper m = new ModelMapper();
-        PortfoliosDTO dto=m.map(portfoliosService.listId(id), PortfoliosDTO.class);
+        PortfoliosDTO dto = m.map(portfoliosService.listId(id), PortfoliosDTO.class);
         return dto;
     }
 
     @PostMapping
-    public void registrar (@RequestBody PortfoliosDTO dto) {
+    public void registrar(@RequestBody PortfoliosDTO dto) {
+        Users user = usersService.listId(dto.getUserId());
+        if (user == null) {
+            throw new IllegalArgumentException("User ID not found");
+        }
         ModelMapper m = new ModelMapper();
-        Portfolios p = m.map(dto, Portfolios.class); //transforma el dto
+        Portfolios p = m.map(dto, Portfolios.class);
+        p.setUser(user); // Set the user entity
         portfoliosService.insert(p);
-    };
+    }
 
-    @PutMapping
-    public void modificar (@RequestBody PortfoliosDTO dto) {
-        ModelMapper m = new ModelMapper();
-        Portfolios p = m.map(dto, Portfolios.class); //transformamos el dto
-        portfoliosService.update(p);
-    };
+    @PutMapping("/{id}")
+    public void modificar(@PathVariable("id") Integer id, @RequestBody PortfoliosDTO dto) {
+        Users user = usersService.listId(dto.getUserId());
+        if (user == null) {
+            throw new IllegalArgumentException("User ID not found");
+        }
+        Portfolios existingPortfolio = portfoliosService.listId(id);
+        if (existingPortfolio != null) {
+            ModelMapper m = new ModelMapper();
+            Portfolios updatedPortfolio = m.map(dto, Portfolios.class);
+            updatedPortfolio.setPortfolioid(existingPortfolio.getPortfolioid());
+            updatedPortfolio.setUser(user);
+            portfoliosService.update(updatedPortfolio);
+        }
+    }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable("id") Integer id){
+    public void eliminar(@PathVariable("id") Integer id) {
         portfoliosService.delete(id);
     }
 }

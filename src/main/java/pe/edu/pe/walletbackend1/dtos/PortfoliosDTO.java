@@ -6,8 +6,6 @@ import java.time.LocalDate;
 
 public class PortfoliosDTO {
 
-    private int portfolioid;
-
     public String portfolioname;
 
     public String description;
@@ -16,7 +14,7 @@ public class PortfoliosDTO {
 
     public double totaltcea;
 
-    private Users user;
+    private int userId;
 
     public String getPortfolioname() {
         return portfolioname;
@@ -24,14 +22,6 @@ public class PortfoliosDTO {
 
     public void setPortfolioname(String portfolioname) {
         this.portfolioname = portfolioname;
-    }
-
-    public int getPortfolioid() {
-        return portfolioid;
-    }
-
-    public void setPortfolioid(int portfolioid) {
-        this.portfolioid = portfolioid;
     }
 
     public String getDescription() {
@@ -58,11 +48,11 @@ public class PortfoliosDTO {
         this.totaltcea = totaltcea;
     }
 
-    public Users getUser() {
-        return user;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
