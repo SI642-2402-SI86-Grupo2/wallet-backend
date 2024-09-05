@@ -33,4 +33,15 @@ public class UsersServiceImplement implements IUsersService {
     public void delete(int id_users) {
         usersRepository.deleteById(id_users);
     }
+
+    @Override
+    public Users listId(int id) {
+        return usersRepository.findById(id).orElse(null);
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        return usersRepository.existsByEmail(email);
+    }
+
 }

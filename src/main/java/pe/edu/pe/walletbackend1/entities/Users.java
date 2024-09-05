@@ -23,13 +23,11 @@ public class Users {
     private String password;
 
     @Column(name = "image")
-    private byte[] image;
+    private String image;
 
-    public Users() {
-    }
+    public Users() {}
 
-    public Users(int userid, String firstname, String lastname, String email, String password, byte[] image) {
-        this.userid = userid;
+    public Users(String firstname, String lastname, String email, String password, String image) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -77,11 +75,9 @@ public class Users {
         this.password = password;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
+    public String getImage() {return image;}
 
-    public void setImage(byte[] image) {
+    public void setImage(String image) {
         this.image = image;
     }
 }
