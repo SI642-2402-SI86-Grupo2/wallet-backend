@@ -1,7 +1,8 @@
 package pe.edu.pe.walletbackend1.serviceinterface;
 
+
 import pe.edu.pe.walletbackend1.entities.Portfolios;
-import pe.edu.pe.walletbackend1.entities.Users;
+
 
 public interface IPortfoliosService {
 

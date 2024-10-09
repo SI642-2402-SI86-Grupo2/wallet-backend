@@ -1,7 +1,5 @@
 package pe.edu.pe.walletbackend1.dtos;
 
-import pe.edu.pe.walletbackend1.entities.Users;
-
 import java.time.LocalDate;
 
 public class PortfoliosDTO {

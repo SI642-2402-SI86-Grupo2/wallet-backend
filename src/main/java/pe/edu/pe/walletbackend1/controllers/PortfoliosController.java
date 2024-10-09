@@ -7,7 +7,7 @@ import pe.edu.pe.walletbackend1.dtos.PortfoliosDTO;
 import pe.edu.pe.walletbackend1.entities.Portfolios;
 import pe.edu.pe.walletbackend1.entities.Users;
 import pe.edu.pe.walletbackend1.serviceinterface.IPortfoliosService;
-import pe.edu.pe.walletbackend1.serviceinterface.IUsersService;
+import pe.edu.pe.walletbackend1.serviceinterface.IUserService;
 
 @RestController
 @RequestMapping("/portfolios")
@@ -17,7 +17,7 @@ public class PortfoliosController {
     private IPortfoliosService portfoliosService;
 
     @Autowired
-    private IUsersService usersService;
+    private IUserService usersService;
 
     @GetMapping("/{id}")
     public PortfoliosDTO listarID(@PathVariable("id") Integer id) {

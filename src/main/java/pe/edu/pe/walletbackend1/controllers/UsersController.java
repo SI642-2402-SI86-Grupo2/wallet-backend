@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.pe.walletbackend1.dtos.UsersDTO;
 import pe.edu.pe.walletbackend1.entities.Users;
-import pe.edu.pe.walletbackend1.serviceinterface.IUsersService;
+import pe.edu.pe.walletbackend1.serviceinterface.IUserService;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class UsersController {
 
     @Autowired
-    private IUsersService uSv;
+    private IUserService uSv;
 
     @GetMapping
     public List<UsersDTO> listar() {
