@@ -1,0 +1,7 @@
+package com.backend.wallet.iam.infrastructure.hashing.bcrypt;
+
+import com.backend.wallet.iam.application.internal.outboundservices.hashing.HashingService;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+public interface BCryptHashingService extends HashingService, PasswordEncoder {
+}
