@@ -21,7 +21,8 @@ public record DocumentResource(
         BigDecimal nominalRate,
         BigDecimal effectiveRate,
         BigDecimal tcea,
-        BigDecimal commission,
         String status,
+        String initialCosts,
+        String finalCosts,
         Long portfolioId) {
 }

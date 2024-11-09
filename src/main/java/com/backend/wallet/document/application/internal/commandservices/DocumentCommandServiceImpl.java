@@ -43,7 +43,7 @@ public class DocumentCommandServiceImpl implements DocumentCommandService {
                     command.documentType(), command.financialInstitutionsName(), command.number(), command.series(),
                     command.issuerName(), command.issuerRuc(), command.currency(), command.amount(), command.igv(),
                     command.issueDate(), command.dueDate(), command.discountDate(), command.paymentTerms(),
-                    command.nominalRate(), command.effectiveRate(), command.tcea(), command.commission(), command.status()));
+                    command.nominalRate(), command.effectiveRate(), command.tcea(), command.status(), command.initialCosts(), command.finalCosts()));
             return Optional.of(updatedDocument);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error updating document with id " + id);

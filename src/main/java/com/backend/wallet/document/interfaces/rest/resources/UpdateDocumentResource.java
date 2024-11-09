@@ -20,6 +20,9 @@ public record UpdateDocumentResource(
         BigDecimal nominalRate,
         BigDecimal effectiveRate,
         BigDecimal tcea,
-        BigDecimal commission,
-        String status) {
+        String status,
+        String initialCosts,
+        String finalCosts
+
+) {
 }

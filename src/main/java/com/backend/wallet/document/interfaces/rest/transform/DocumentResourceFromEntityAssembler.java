@@ -23,8 +23,9 @@ public class DocumentResourceFromEntityAssembler {
                 entity.getNominalRate(),
                 entity.getEffectiveRate(),
                 entity.getTcea(),
-                entity.getCommission(),
                 entity.getStatus(),
+                entity.getInitialCosts(),
+                entity.getFinalCosts(),
                 entity.getPortfolio().getId()
         );
     }

@@ -64,11 +64,14 @@ public class Document extends AuditableAbstractAggregateRoot<Document> {
     @Column(name = "tcea", precision = 7, scale = 4)
     private BigDecimal tcea;
 
-    @Column(name = "commission", precision = 10, scale = 2)
-    private BigDecimal commission;
-
     @Column(name = "status", length = 20)
     private String status;
+
+    @Column(name = "initial_costs", length = 300)
+    private String initialCosts;
+
+    @Column(name = "final_costs", length = 300)
+    private String finalCosts;
 
     @ManyToOne
     @JoinColumn(name = "portfolios_id", referencedColumnName = "id")
@@ -80,7 +83,7 @@ public class Document extends AuditableAbstractAggregateRoot<Document> {
     public Document(String documentType, String financialInstitutionsName, String number, String series,
                     String issuerName, String issuerRuc, String currency, BigDecimal amount, BigDecimal igv,
                     Date issueDate, Date dueDate, Date discountDate, String paymentTerms, BigDecimal nominalRate,
-                    BigDecimal effectiveRate, BigDecimal tcea, BigDecimal commission, String status, Portfolio portfolio) {
+                    BigDecimal effectiveRate, BigDecimal tcea, String status, String initialCosts, String finalCosts, Portfolio portfolio) {
         this.documentType = documentType;
         this.financialInstitutionsName = financialInstitutionsName;
         this.number = number;
@@ -97,8 +100,9 @@ public class Document extends AuditableAbstractAggregateRoot<Document> {
         this.nominalRate = nominalRate;
         this.effectiveRate = effectiveRate;
         this.tcea = tcea;
-        this.commission = commission;
         this.status = status;
+        this.initialCosts = initialCosts;
+        this.finalCosts = finalCosts;
         this.portfolio = portfolio;
     }
 
@@ -119,15 +123,16 @@ public class Document extends AuditableAbstractAggregateRoot<Document> {
         this.nominalRate = command.nominalRate();
         this.effectiveRate = command.effectiveRate();
         this.tcea = command.tcea();
-        this.commission = command.commission();
         this.status = command.status();
+        this.initialCosts = command.initialCosts();
+        this.finalCosts = command.finalCosts();
         this.portfolio = portfolio;
     }
 
     public Document updateDocument(String documentType, String financialInstitutionsName, String number, String series,
                                    String issuerName, String issuerRuc, String currency, BigDecimal amount, BigDecimal igv,
                                    Date issueDate, Date dueDate, Date discountDate, String paymentTerms, BigDecimal nominalRate,
-                                   BigDecimal effectiveRate, BigDecimal tcea, BigDecimal commission, String status) {
+                                   BigDecimal effectiveRate, BigDecimal tcea, String status, String initialCosts, String finalCosts) {
         this.documentType = documentType;
         this.financialInstitutionsName = financialInstitutionsName;
         this.number = number;
@@ -144,8 +149,9 @@ public class Document extends AuditableAbstractAggregateRoot<Document> {
         this.nominalRate = nominalRate;
         this.effectiveRate = effectiveRate;
         this.tcea = tcea;
-        this.commission = commission;
         this.status = status;
+        this.initialCosts = initialCosts;
+        this.finalCosts = finalCosts;
         return this;
     }
 }

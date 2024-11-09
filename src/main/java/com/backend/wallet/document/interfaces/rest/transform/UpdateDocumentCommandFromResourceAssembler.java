@@ -23,8 +23,10 @@ public class UpdateDocumentCommandFromResourceAssembler {
                 resource.nominalRate(),
                 resource.effectiveRate(),
                 resource.tcea(),
-                resource.commission(),
-                resource.status()
+                resource.status(),
+                resource.initialCosts(),
+                resource.finalCosts()
+
         );
     }
 }

@@ -22,8 +22,9 @@ public class CreateDocumentCommandFromResourceAssembler {
                 resource.nominalRate(),
                 resource.effectiveRate(),
                 resource.tcea(),
-                resource.commission(),
                 resource.status(),
+                resource.initialCosts(),
+                resource.finalCosts(),
                 resource.portfolioId()
         );
     }
