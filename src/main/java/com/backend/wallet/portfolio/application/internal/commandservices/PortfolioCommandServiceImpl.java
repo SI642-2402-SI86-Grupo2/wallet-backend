@@ -38,7 +38,7 @@ public class PortfolioCommandServiceImpl implements PortfolioCommandService {
         var result = portfolioRepository.findById(id);
         var portfolioToUpdate = result.get();
         try {
-            var updatedPortfolio = portfolioRepository.save(portfolioToUpdate.updatePortfolio(command.portfolioName(), command.portfolioName(), command.discountDate(), command.totalTcea()));
+            var updatedPortfolio = portfolioRepository.save(portfolioToUpdate.updatePortfolio(command.portfolioName(), command.description(), command.discountDate(), command.totalTcea()));
             return Optional.of(updatedPortfolio);
         } catch (Exception e) {
             throw new IllegalArgumentException("Error updating portfolio with id " + id);
