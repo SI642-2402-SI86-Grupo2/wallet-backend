@@ -55,8 +55,8 @@ public class DocumentController {
     }
 
     @GetMapping("/{documentId}")
-    public ResponseEntity<DocumentResource> getDocumentById(@PathVariable Long id) {
-        var getDocumentByIdQuery = new GetDocumentByIdQuery(id);
+    public ResponseEntity<DocumentResource> getDocumentById(@PathVariable Long documentId) {
+        var getDocumentByIdQuery = new GetDocumentByIdQuery(documentId);
         var document = documentQueryService.handle(getDocumentByIdQuery);
         if (document.isEmpty()) return ResponseEntity.notFound().build();
         var documentResource = DocumentResourceFromEntityAssembler.toResourceFromEntity(document.get());
@@ -75,8 +75,8 @@ public class DocumentController {
 
 
     @PutMapping("/{documentId}")
-    public ResponseEntity<DocumentResource> updateDocument(@PathVariable Long id, @RequestBody UpdateDocumentResource resource) {
-        var updateDocumentCommand = UpdateDocumentCommandFromResourceAssembler.toCommandFromResource(id, resource);
+    public ResponseEntity<DocumentResource> updateDocument(@PathVariable Long documentId, @RequestBody UpdateDocumentResource resource) {
+        var updateDocumentCommand = UpdateDocumentCommandFromResourceAssembler.toCommandFromResource(documentId, resource);
         var updatedDocument = documentCommandService.handle(updateDocumentCommand);
         if (updatedDocument.isEmpty()) return ResponseEntity.notFound().build();
         var updatedDocumentResource = DocumentResourceFromEntityAssembler.toResourceFromEntity(updatedDocument.get());
@@ -84,8 +84,8 @@ public class DocumentController {
     }
 
     @DeleteMapping("/{documentId}")
-    public ResponseEntity<Void> deleteDocument(@PathVariable Long id) {
-        var deleteDocumentCommand = new DeleteDocumentCommand(id);
+    public ResponseEntity<Void> deleteDocument(@PathVariable Long documentId) {
+        var deleteDocumentCommand = new DeleteDocumentCommand(documentId);
         documentCommandService.handle(deleteDocumentCommand);
         return ResponseEntity.noContent().build();
     }

@@ -56,8 +56,8 @@ public class PortfolioController {
     }
 
     @GetMapping("/{portfolioId}")
-    public ResponseEntity<PortfolioResource> getPortfolioById(@PathVariable Long id) {
-        var getPortfolioByIdQuery = new GetPortfolioByIdQuery(id);
+    public ResponseEntity<PortfolioResource> getPortfolioById(@PathVariable Long portfolioId) {
+        var getPortfolioByIdQuery = new GetPortfolioByIdQuery(portfolioId);
         var portfolio = portfolioQueryService.handle(getPortfolioByIdQuery);
         if (portfolio.isEmpty()) return ResponseEntity.notFound().build();
         var portfolioResource = PortfolioResourceFromEntityAssembler.toResourceFromEntity(portfolio.get());
@@ -85,8 +85,8 @@ public class PortfolioController {
     }
 
     @PutMapping("/{portfolioId}")
-    public ResponseEntity<PortfolioResource> updatePortfolio(@PathVariable Long id, @RequestBody UpdatePortfolioResource resource) {
-        var updatePortfolioCommand = UpdatePortfolioCommandFromResourceAssembler.toCommandFromResource(id, resource);
+    public ResponseEntity<PortfolioResource> updatePortfolio(@PathVariable Long portfolioId, @RequestBody UpdatePortfolioResource resource) {
+        var updatePortfolioCommand = UpdatePortfolioCommandFromResourceAssembler.toCommandFromResource(portfolioId, resource);
         var updatedPortfolio = portfolioCommandService.handle(updatePortfolioCommand);
         if (updatedPortfolio.isEmpty()) return ResponseEntity.notFound().build();
         var updatedPortfolioResource = PortfolioResourceFromEntityAssembler.toResourceFromEntity(updatedPortfolio.get());
@@ -94,8 +94,8 @@ public class PortfolioController {
     }
 
     @DeleteMapping("/{portfolioId}")
-    public ResponseEntity<Void> deletePortfolio(@PathVariable Long id) {
-        var deletePortfolioCommand = new DeletePortfolioCommand(id);
+    public ResponseEntity<Void> deletePortfolio(@PathVariable Long portfolioId) {
+        var deletePortfolioCommand = new DeletePortfolioCommand(portfolioId);
         portfolioCommandService.handle(deletePortfolioCommand);
         return ResponseEntity.noContent().build();
     }

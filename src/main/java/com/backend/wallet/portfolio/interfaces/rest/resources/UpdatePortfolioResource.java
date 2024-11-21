@@ -7,5 +7,6 @@ public record UpdatePortfolioResource(
         String portfolioName,
         String description,
         Date discountDate,
-        BigDecimal totalTcea) {
+        BigDecimal totalTcea
+) {
 }
